@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="en" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday Mansi! 🎂</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&amp;family=Poppins:wght@300;400;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    body {
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    
+    .font-pacifico {
+      font-family: 'Pacifico', cursive;
+    }
+    
+    /* Floating particles */
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      50% { transform: translateY(-20px) rotate(180deg); opacity: 0.8; }
+    }
+    
+    @keyframes float-up {
+      0% { transform: translateY(100%) rotate(0deg); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { transform: translateY(-100%) rotate(720deg); opacity: 0; }
+    }
+    
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 20px rgba(255, 105, 180, 0.5); }
+      50% { box-shadow: 0 0 40px rgba(255, 105, 180, 0.8), 0 0 60px rgba(255, 182, 193, 0.6); }
+    }
+    
+    @keyframes sparkle {
+      0%, 100% { transform: scale(1) rotate(0deg); opacity: 1; }
+      50% { transform: scale(1.5) rotate(180deg); opacity: 0.5; }
+    }
+    
+    @keyframes bounce-in {
+      0% { transform: scale(0); opacity: 0; }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    
+    @keyframes slide-up {
+      0% { transform: translateY(50px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+    
+    @keyframes rainbow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    
+    @keyframes confetti-fall {
+      0% { transform: translateY(-100%) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(100%) rotate(720deg); opacity: 0; }
+    }
+    
+    @keyframes heart-beat {
+      0%, 100% { transform: scale(1); }
+      25% { transform: scale(1.1); }
+      50% { transform: scale(1); }
+      75% { transform: scale(1.1); }
+    }
+    
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-5px) rotate(-5deg); }
+      75% { transform: translateX(5px) rotate(5deg); }
+    }
+    
+    @keyframes glow-text {
+      0%, 100% { text-shadow: 0 0 10px #ff69b4, 0 0 20px #ff69b4, 0 0 30px #ff69b4; }
+      50% { text-shadow: 0 0 20px #ff1493, 0 0 40px #ff1493, 0 0 60px #ff1493, 0 0 80px #ff1493; }
+    }
+    
+    .animate-float { animation: float 3s ease-in-out infinite; }
+    .animate-float-up { animation: float-up 8s linear infinite; }
+    .animate-pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
+    .animate-sparkle { animation: sparkle 1.5s ease-in-out infinite; }
+    .animate-bounce-in { animation: bounce-in 0.8s ease-out forwards; }
+    .animate-slide-up { animation: slide-up 0.8s ease-out forwards; }
+    .animate-confetti { animation: confetti-fall 4s linear infinite; }
+    .animate-heart-beat { animation: heart-beat 1s ease-in-out infinite; }
+    .animate-shake { animation: shake 0.5s ease-in-out infinite; }
+    .animate-glow-text { animation: glow-text 2s ease-in-out infinite; }
+    
+    .rainbow-text {
+      background: linear-gradient(90deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #8f00ff, #ff0000);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: rainbow 3s linear infinite;
+    }
+    
+    .photo-card {
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    
+    .photo-card:hover {
+      transform: scale(1.1) rotate(3deg);
+      z-index: 10;
+    }
+    
+    .countdown-digit {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      animation: pulse-glow 2s ease-in-out infinite;
+    }
+    
+    .particle {
+      position: absolute;
+      pointer-events: none;
+    }
+    
+    .confetti {
+      position: fixed;
+      pointer-events: none;
+      z-index: 1000;
+    }
+    
+    .celebration-hidden {
+      display: none;
+    }
+    
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 1rem;
+    }
+    
+    @media (min-width: 768px) {
+      .photo-grid {
+        grid-template-columns: repeat(5, 1fr);
+      }
+    }
+    
+    .cake-emoji {
+      font-size: 4rem;
+      animation: bounce-in 1s ease-out, shake 0.5s ease-in-out 1s infinite;
+    }
+    
+    .balloon {
+      position: fixed;
+      font-size: 3rem;
+      animation: float-up 8s linear infinite;
+      z-index: 5;
+    }
+    
+    .star {
+      position: fixed;
+      font-size: 1.5rem;
+      animation: sparkle 2s ease-in-out infinite;
+      z-index: 5;
+    }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full">
+  <div id="app-wrapper" class="min-h-full w-full overflow-auto" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);"><!-- Floating Balloons -->
+   <div id="balloons-container"></div><!-- Stars -->
+   <div id="stars-container"></div><!-- Confetti Container -->
+   <div id="confetti-container"></div><!-- Main Content -->
+   <div class="relative z-10 p-4 md:p-8"><!-- Countdown Section (shown before birthday) -->
+    <section id="countdown-section" class="text-center py-8 md:py-16">
+     <div class="animate-bounce-in" style="animation-delay: 0.2s;"><span class="cake-emoji">🎂</span>
+     </div>
+     <h1 id="main-title" class="font-pacifico text-4xl md:text-7xl text-white mt-6 animate-glow-text">Happy Birthday Mansi</h1>
+     <p id="countdown-subtitle" class="text-xl md:text-2xl text-pink-300 mt-4 animate-slide-up" style="animation-delay: 0.4s;">The celebration begins in...</p><!-- Countdown Timer -->
+     <div id="countdown-timer" class="flex flex-wrap justify-center gap-4 md:gap-8 mt-8 md:mt-12">
+      <div class="countdown-digit rounded-2xl p-4 md:p-6 min-w-[80px] md:min-w-[120px]"><span id="days" class="text-3xl md:text-5xl font-bold text-white">00</span>
+       <p class="text-pink-200 text-sm md:text-base mt-2">Days</p>
+      </div>
+      <div class="countdown-digit rounded-2xl p-4 md:p-6 min-w-[80px] md:min-w-[120px]"><span id="hours" class="text-3xl md:text-5xl font-bold text-white">00</span>
+       <p class="text-pink-200 text-sm md:text-base mt-2">Hours</p>
+      </div>
+      <div class="countdown-digit rounded-2xl p-4 md:p-6 min-w-[80px] md:min-w-[120px]"><span id="minutes" class="text-3xl md:text-5xl font-bold text-white">00</span>
+       <p class="text-pink-200 text-sm md:text-base mt-2">Minutes</p>
+      </div>
+      <div class="countdown-digit rounded-2xl p-4 md:p-6 min-w-[80px] md:min-w-[120px]"><span id="seconds" class="text-3xl md:text-5xl font-bold text-white">00</span>
+       <p class="text-pink-200 text-sm md:text-base mt-2">Seconds</p>
+      </div>
+     </div>
+     <p class="text-pink-400 mt-8 text-lg">🎉 January 17, 2026 at 12:00 AM 🎉</p>
+    </section><!-- Celebration Section (shown on/after birthday) -->
+    <section id="celebration-section" class="celebration-hidden text-center py-8">
+     <div class="animate-bounce-in"><span class="text-6xl md:text-8xl animate-heart-beat inline-block">🎉</span>
+     </div>
+     <h1 id="birthday-title" class="font-pacifico text-5xl md:text-8xl rainbow-text mt-6">Happy Birthday Mansi!</h1>
+     <p id="birthday-message" class="text-2xl md:text-4xl text-pink-300 mt-6 animate-slide-up font-light">🌟 Wishing you the most magical day! 🌟</p>
+     <div class="flex justify-center gap-4 mt-8 text-4xl"><span class="animate-float" style="animation-delay: 0s;">🎈</span> <span class="animate-float" style="animation-delay: 0.2s;">🎁</span> <span class="animate-float" style="animation-delay: 0.4s;">🎂</span> <span class="animate-float" style="animation-delay: 0.6s;">🎊</span> <span class="animate-float" style="animation-delay: 0.8s;">🎈</span>
+     </div>
+    </section><!-- Photo Gallery Section -->
+    <!-- EVERYTHING ABOVE THIS IS 100% SAME AS YOUR CODE -->
+
+<!-- Photo Gallery Section -->
+<section class="mt-12 md:mt-16">
+<h2 class="font-pacifico text-3xl md:text-5xl text-center text-white mb-8 animate-glow-text">
+✨ Precious Memories ✨
+</h2>
+
+<div class="photo-grid max-w-6xl mx-auto px-4">
+
+<!-- Photo 1 -->
+<img class="w-full h-full object-cover"
+src="https://drive.google.com/thumbnail?id=1H77nQmIYds58D3w52cBFzdR2ykJubrVX&sz=w1000">
+
+<!-- Photo 2 -->
+<img class="w-full h-full object-cover"
+src="https://drive.google.com/thumbnail?id=1ZnjKmphHXKOIC7BZxmrAYp3pd6ap-MBO&sz=w1000">
+
+<!-- Photo 3 -->
+<img class="w-full h-full object-cover"
+src="https://drive.google.com/thumbnail?id=1N2kfS78g7Hjw-B5b6tV3Kc8_8FkKiFdY&sz=w1000">
+
+<!-- Photo 4 -->
+<img class="w-full h-full object-cover"
+src="https://drive.google.com/thumbnail?id=15g9ajSD9qWA9-LbkSZyrNN7gaaNamrmL&sz=w1000">
+
+<!-- Photo 5 -->
+<img class="w-full h-full object-cover"
+src="https://drive.google.com/thumbnail?id=1PX-53ngzctYtQ9nGlbbO8xKJmbzwuWEl&sz=w1000">
+
+<!-- Photo 6 -->
+<img class="w-full h-full object-cover"
+src="https://drive.google.com/thumbnail?id=1NG2P487wzEGnGYf4y2peu0rsooogwCf8&sz=w1000">
+
+<!-- Photo 7 -->
+<img class="w-full h-full object-cover"
+src="https://drive.google.com/thumbnail?id=1BXcJHkLTL5kKA2fRDRqM5NX15cg9Tqex&sz=w1000">
+
+<!-- Photo 8 -->
+<img class="w-full h-full object-cover"
+src="https://drive.google.com/thumbnail?id=1xsyNMUsJTeRLelZbePFc5LFybZVts7fD&sz=w1000">
+
+<!-- Photo 9 -->
+<img class="w-full h-full object-cover"
+src="https://drive.google.com/thumbnail?id=1U7o2lppXxu86ZmlroXmspvg_8kgxVLNo&sz=w1000">
+
+<!-- Photo 10 -->
+<img class="w-full h-full object-cover"
+src="https://drive.google.com/thumbnail?id=1qg2XqDtQtBUQoih6Rxnvwq_E2z0ki4fn&sz=w1000">
+
+<!-- Photo 11 -->
+<img class="w-full h-full object-cover"
+src="https://drive.google.com/thumbnail?id=1tsOwnhjbhjd-ho1gWdERDx4tUoC0fHUB&sz=w1000">
+
+<!-- Photo 12 -->
+<img class="w-full h-full object-cover"
+src="https://drive.google.com/thumbnail?id=19vfql9C2BN0ZszTWZTw7xFEMd_r0Llj8&sz=w1000">
+
+<!-- Photo 13 -->
+<img class="w-full h-full object-cover"
+src="https://drive.google.com/thumbnail?id=1k9RUMwNDs33mKFvC2sKHvm4SIRP_BRYH&sz=w1000">
+
+<!-- Photo 14 -->
+<img class="w-full h-full object-cover"
+src="https://drive.google.com/thumbnail?id=1k9RUMwNDs33mKFvC2sKHvm4SIRP_BRYH&sz=w1000">
+
+<!-- Photo 15 -->
+<img class="w-full h-full object-cover"
+src="https://drive.google.com/thumbnail?id=1ecQ3CO9NRwoX1Nh8ZIw_Ns3Qd2dUqM7m&sz=w1000">
+
+<!-- Photo 16 -->
+<img class="w-full h-full object-cover"
+src="https://drive.google.com/thumbnail?id=1R5beD2JBDvVyLV8Clka2aJPP8ml57Ti2&sz=w1000">
+
+<!-- Photo 17 -->
+<img class="w-full h-full object-cover"
+src="https://drive.google.com/thumbnail?id=1n95RT7424WZjTQfS8B_RBaSlWgb9o6uw&sz=w1000">
+
+<!-- Photo 18 -->
+<img class="w-full h-full object-cover"
+src="https://drive.google.com/thumbnail?id=1Y2svNPAm6ss8r_IvZktZLLENY88ccQZH&sz=w1000">
+
+<!-- Photo 19 -->
+<img class="w-full h-full object-cover"
+src="https://drive.google.com/thumbnail?id=1jnR98hlrE4bJCNvpd1bJj3xiz2Lx6ZQq&sz=w1000">
+
+<!-- Photo 20 -->
+<img class="w-full h-full object-cover"
+src="https://drive.google.com/thumbnail?id=1TgHkraUbLdB2zrZfLotB-8cgcxgEI6wR&sz=w1000">
+
+<!-- Photo 21 -->
+<img class="w-full h-full object-cover"
+src="https://drive.google.com/thumbnail?id=1vNN2j5VPFQjx_WDBC4tvg53m14iQGL6t&sz=w1000">
+
+<!-- Photo 22 -->
+<img class="w-full h-full object-cover"
+src="https://drive.google.com/thumbnail?id=1q2kEZlpTH12JVdQUHPcNGLI6D6NPXj0p&sz=w1000">
+
+</div>
+</section>
+
+<!-- EVERYTHING BELOW THIS IS 100% SAME AS YOUR CODE -->
+
+    </section><!-- Birthday Message Section -->
+    <section class="mt-16 mb-12 text-center">
+     <div class="max-w-3xl mx-auto bg-gradient-to-r from-pink-500/20 to-purple-500/20 backdrop-blur-sm rounded-3xl p-8 md:p-12 border border-pink-500/30">
+      <h3 class="font-pacifico text-3xl md:text-4xl text-pink-300 mb-6">💌 Special Message 💌</h3>
+      <p id="special-message" class="text-lg md:text-xl text-white leading-relaxed">Dear Mansi,<br><br>
+        On this special day, may all your dreams come true and your heart be filled with joy! You bring so much happiness to everyone around you. Here's to another year of beautiful memories, amazing adventures, and endless laughter!<br><br>
+        With lots of love and warm wishes! 🎂✨</p>
+      <div class="mt-8 flex justify-center gap-2 text-3xl"><span class="animate-heart-beat">❤️</span> <span class="animate-heart-beat" style="animation-delay: 0.1s;">🧡</span> <span class="animate-heart-beat" style="animation-delay: 0.2s;">💛</span> <span class="animate-heart-beat" style="animation-delay: 0.3s;">💚</span> <span class="animate-heart-beat" style="animation-delay: 0.4s;">💙</span> <span class="animate-heart-beat" style="animation-delay: 0.5s;">💜</span>
+      </div>
+     </div>
+    </section><!-- Footer -->
+    <footer class="text-center py-8 text-pink-300">
+     <p class="text-lg">Made by Aditya for Mansi</p>
+     <p class="text-sm mt-2 opacity-70">🎂 January 17, 2026 🎂</p>
+    </footer>
+   </div>
+  </div>
+  <script>
+    const defaultConfig = {
+      birthday_name: 'Mansi',
+      main_message: 'Wishing you the most magical day!',
+      subtitle_message: 'The celebration begins in...',
+      background_color: '#1a1a2e',
+      accent_color: '#ff69b4',
+      text_color: '#ffffff',
+      secondary_color: '#c084fc',
+      highlight_color: '#f472b6'
+    };
+    
+    // Birthday date: January 17, 2026 at 12:00 AM
+    const birthdayDate = new Date('2026-01-17T00:00:00');
+    
+    // Create floating balloons
+    function createBalloons() {
+      const container = document.getElementById('balloons-container');
+      const balloons = ['🎈', '🎈', '🎈', '🎈', '🎈', '🎈'];
+      const colors = ['red', 'pink', 'purple', 'blue', 'yellow', 'green'];
+      
+      balloons.forEach((balloon, index) => {
+        const el = document.createElement('div');
+        el.className = 'balloon';
+        el.textContent = balloon;
+        el.style.left = `${Math.random() * 90 + 5}%`;
+        el.style.animationDelay = `${Math.random() * 8}s`;
+        el.style.filter = `hue-rotate(${index * 60}deg)`;
+        container.appendChild(el);
+      });
+    }
+    
+    // Create stars
+    function createStars() {
+      const container = document.getElementById('stars-container');
+      const stars = ['⭐', '✨', '💫', '🌟'];
+      
+      for (let i = 0; i < 15; i++) {
+        const el = document.createElement('div');
+        el.className = 'star';
+        el.textContent = stars[Math.floor(Math.random() * stars.length)];
+        el.style.left = `${Math.random() * 95}%`;
+        el.style.top = `${Math.random() * 95}%`;
+        el.style.animationDelay = `${Math.random() * 2}s`;
+        container.appendChild(el);
+      }
+    }
+    
+    // Create confetti
+    function createConfetti() {
+      const container = document.getElementById('confetti-container');
+      const confettiChars = ['🎊', '🎉', '✨', '💖', '⭐', '🌸'];
+      
+      for (let i = 0; i < 30; i++) {
+        const el = document.createElement('div');
+        el.className = 'confetti animate-confetti';
+        el.textContent = confettiChars[Math.floor(Math.random() * confettiChars.length)];
+        el.style.left = `${Math.random() * 100}%`;
+        el.style.fontSize = `${Math.random() * 20 + 15}px`;
+        el.style.animationDelay = `${Math.random() * 4}s`;
+        el.style.animationDuration = `${Math.random() * 3 + 3}s`;
+        container.appendChild(el);
+      }
+    }
+    
+    // Update countdown
+    function updateCountdown() {
+      const now = new Date();
+      const diff = birthdayDate - now;
+      
+      if (diff <= 0) {
+        // It's birthday time!
+        document.getElementById('countdown-section').classList.add('celebration-hidden');
+        document.getElementById('celebration-section').classList.remove('celebration-hidden');
+        createConfetti();
+        return;
+      }
+      
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+      
+      document.getElementById('days').textContent = String(days).padStart(2, '0');
+      document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+      document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+      document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+    }
+    
+    // Initialize decorations
+    createBalloons();
+    createStars();
+    
+    // Start countdown
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+    
+    // Element SDK initialization
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange: async (config) => {
+          const name = config.birthday_name || defaultConfig.birthday_name;
+          const mainMsg = config.main_message || defaultConfig.main_message;
+          const subtitleMsg = config.subtitle_message || defaultConfig.subtitle_message;
+          
+          document.getElementById('main-title').textContent = `${name}'s Birthday`;
+          document.getElementById('countdown-subtitle').textContent = subtitleMsg;
+          document.getElementById('birthday-title').textContent = `Happy Birthday ${name}!`;
+          document.getElementById('birthday-message').innerHTML = `🌟 ${mainMsg} 🌟`;
+        },
+        mapToCapabilities: (config) => ({
+          recolorables: [],
+          borderables: [],
+          fontEditable: undefined,
+          fontSizeable: undefined
+        }),
+        mapToEditPanelValues: (config) => new Map([
+          ['birthday_name', config.birthday_name || defaultConfig.birthday_name],
+          ['main_message', config.main_message || defaultConfig.main_message],
+          ['subtitle_message', config.subtitle_message || defaultConfig.subtitle_message]
+        ])
+      });
+    }
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9bef7e9c23031b69',t:'MTc2ODU4NjIzOS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
